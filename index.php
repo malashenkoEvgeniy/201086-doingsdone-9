@@ -1,6 +1,51 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+$projects = [
+    'Входящие',
+    'Учеба',
+    'Работа',
+    'Домашние дела',
+    'Авто'
+];
+$doings = [
+    [
+        'task' => 'Собеседование в IT компании',
+        'date' => '01.12.2018',
+        'projects' => $projects[2],
+        'status' => 'Нет'
+    ],
+    [
+        'task' => 'Выполнить тестовое задание',
+        'date' => '25.12.2018',
+        'projects' => $projects[2],
+        'status' => 'Нет'
+    ],
+    [
+        'task' => 'Встреча с другом',
+        'date' => '22.12.2018',
+        'projects' => $projects[0],
+        'status' => 'Нет'
+    ],
+    [
+        'task' => 'Сделать задание первого раздела',
+        'date' => '21.12.2018',
+        'projects' => $projects[1],
+        'status' => 'Да'
+    ],
+    [
+        'task' => 'Купить корм для кота',
+        'date' => 'Нет',
+        'projects' => $projects[3],
+        'status' => 'Нет'
+    ],
+    [
+        'task' => 'Заказать пиццу',
+        'date' => 'Нет',
+        'projects' => $projects[3],
+        'status' => 'Нет'
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -42,10 +87,14 @@ $show_complete_tasks = rand(0, 1);
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
+                       <?php
+                        foreach($doings as $cause):
+                        ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Название проекта</a>
+                            <a class="main-navigation__list-item-link" href="#"><?= $cause['task'];?></a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
+                        <?php endforeach; ?>
                     </ul>
                 </nav>
 
@@ -78,18 +127,7 @@ $show_complete_tasks = rand(0, 1);
                 </div>
 
                 <table class="tasks">
-                   <?php if($show_complete_tasks):?>
-                   <tr class="tasks__item task task--completed">
-											<td class="task__select">
-													<label class="checkbox task__checkbox">
-															<input class="checkbox__input visually-hidden" type="checkbox" checked>
-															<span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
-													</label>
-											</td>
-											<td class="task__date">10.10.2019</td>
-											<td class="task__controls"></td>
-										</tr> <?php endif; ?>
-                    <tr class="tasks__item task">
+                    <!--<tr class="tasks__item task">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -102,8 +140,35 @@ $show_complete_tasks = rand(0, 1);
                         </td>
 
                         <td class="task__date"></td>
-                    </tr>
-                    <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
+                    </tr>-->
+                   <?php
+                    foreach($doings as $cause):
+                        if($show_complete_tasks){
+                           ?>
+                               <tr class="tasks__item task <?php if($cause['status']=='Да') echo 'task--completed'; ?>">
+                                  <td class="task__select">
+                                      <label class="checkbox task__checkbox">
+                                          <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                                          <span class="checkbox__text"><?= $cause['task'];?></span>
+                                      </label>
+                                  </td>
+                                  <td class="task__date"><?= $cause['date'];?></td>
+                                  <td class="task__controls"><?= $cause['status'];?></td>
+                                </tr>
+                   <?php } else {
+                            if($cause['status']!=='Да'):
+                        ?>
+               <tr class="tasks__item task">
+											<td class="task__select">
+													<label class="checkbox task__checkbox">
+															<input class="checkbox__input visually-hidden" type="checkbox" checked>
+															<span class="checkbox__text"><?= $cause['task'];?></span>
+													</label>
+											</td>
+											<td class="task__date"><?= $cause['date'];?></td>
+											<td class="task__controls"><?= $cause['status'];?></td>
+										</tr>
+               <?php endif; } endforeach; ?>
                 </table>
             </main>
         </div>
