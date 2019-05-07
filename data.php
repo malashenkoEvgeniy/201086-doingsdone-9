@@ -1,49 +1,43 @@
 <?php
-require_once "function.php";
 // показывать или нет выполненные задачи
+$title = 'Дела в порядке!!!!';
 $show_complete_tasks = rand(0, 1);
-$projects = [
-    'Входящие',
-    'Учеба',
-    'Работа',
-    'Домашние дела',
-    'Авто'
-];
+
 $doings = [
     [
         'task' => 'Собеседование в IT компании',
         'date' => '01.12.2018',
-        'projects' => $projects[2],
+        'projects' => 'Работа',
         'status' => 'Нет'
     ],
     [
         'task' => 'Выполнить тестовое задание',
         'date' => '25.12.2018',
-        'projects' => $projects[2],
+        'projects' => 'Работа',
         'status' => 'Нет'
     ],
     [
         'task' => 'Встреча с другом',
         'date' => '22.12.2018',
-        'projects' => $projects[0],
+        'projects' => 'Входящие',
         'status' => 'Нет'
     ],
     [
         'task' => 'Сделать задание первого раздела',
         'date' => '21.12.2018',
-        'projects' => $projects[1],
+        'projects' => 'Учеба',
         'status' => 'Да'
     ],
     [
         'task' => 'Купить корм для кота',
         'date' => 'Нет',
-        'projects' => $projects[3],
+        'projects' => 'Домашние дела',
         'status' => 'Нет'
     ],
     [
         'task' => 'Заказать пиццу',
         'date' => 'Нет',
-        'projects' => $projects[3],
+        'projects' => 'Домашние дела',
         'status' => 'Нет'
     ]
 ];
