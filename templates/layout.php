@@ -42,7 +42,7 @@
                         foreach($doings as $cause):
                         ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?= $cause['task'];?></a>
+                            <a class="main-navigation__list-item-link" href="#"><?= $cause['projects'];?></a>
                             <span class="main-navigation__list-item-count"><?= showCountTask($doings, $cause['projects']); ?></span>
                         </li>
                         <?php endforeach; ?>
