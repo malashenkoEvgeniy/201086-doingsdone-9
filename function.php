@@ -1,13 +1,5 @@
 <?php
-function showCountTask($arr, $project){
-    $count = 0;
-    foreach($arr as $elem){
-        if ($elem['projects']==$project) {
-            $count++;
-        }
-    }
-    return $count;
-}
+
 /**
  * Подключает шаблон, передает туда данные и возвращает итоговый HTML контент
  * @param string $name Путь к файлу шаблона относительно папки templates
@@ -45,8 +37,31 @@ function get_hour_date($date) {
         return floor($k/3600);
         }
     return 999;
-
 }
-
-//echo get_hour_date('07.05.2019');
-echo get_hour_date('08.05.2019');
+/**
+ * Функция принимает масив категорий и айди категории
+ * @param {array}
+ * @return {string} Название категории
+ */
+function get_category_name_byid($arr, $id) {
+			foreach($arr as $item) {
+				if ($item['id'] == $id) {
+					return $item['name'];
+				}
+			}
+		}
+/**
+ * Функция принимает масив задач и проектов 
+ * @param {array}
+ * @return {string}  Возвращает ассоциативный массив, в котором ключами будут элементы массива, а значениями - их количество в массиве.
+ */
+function showTask($arr, $project){
+				$rez = [];
+				foreach($arr as $cause):
+					array_push($rez, get_category_name_byid($project, $cause['project_id'])
+					
+					);
+          endforeach;
+				
+				return array_count_values($rez);
+		}

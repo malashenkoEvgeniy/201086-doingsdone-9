@@ -39,11 +39,12 @@
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                        <?php
-                        foreach($doings as $cause):
+                        foreach(showTask($doings, $project) as $key=>$count):
                         ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?= $cause['projects'];?></a>
-                            <span class="main-navigation__list-item-count"><?= showCountTask($doings, $cause['projects']); ?></span>
+                            <a class="main-navigation__list-item-link" href="#">
+                            <?= $key;?></a>
+                            <span class="main-navigation__list-item-count"><?=$count; ?></span>
                         </li>
                         <?php endforeach; ?>
                     </ul>
